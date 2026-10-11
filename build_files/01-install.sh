@@ -8,7 +8,8 @@ dnf5 install -y \
   brave-origin \
   thunar \
   thunar-archive-plugin \
-  thunar-volman
+  thunar-volman \
+  zed
 
 # niri
 dnf5 install -y \
@@ -35,6 +36,7 @@ dnf5 install -y \
 # cli
 dnf5 install -y \
   kitty \
+  ghostty \
   git \
   neovim \
   tmux \
