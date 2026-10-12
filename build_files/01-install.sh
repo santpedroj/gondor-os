@@ -37,7 +37,6 @@ dnf5 install -y \
 dnf5 install -y \
   alacritty \
   kitty \
-  ghostty \
   git \
   neovim \
   tmux \
