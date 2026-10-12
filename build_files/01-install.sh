@@ -35,6 +35,7 @@ dnf5 install -y \
 
 # cli
 dnf5 install -y \
+  alacritty \
   kitty \
   ghostty \
   git \
