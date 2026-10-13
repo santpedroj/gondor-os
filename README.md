@@ -317,6 +317,27 @@ These are images derived from this template (or similar enough to this template)
 - [Amy OS](https://github.com/astrovm/amyos)
 - [VeneOS](https://github.com/Venefilyn/veneos)
 
+## Gondor OS Noctalia package source
+
+The build installs the `noctalia` desktop shell from Fedora's `fedora` and
+`updates` repositories. If the base image already includes it, the build
+synchronizes it to the version available from those repositories. The Terra
+configuration excludes only `noctalia`, so later dependency transactions cannot
+replace the shell with Terra's package. `noctalia-greeter` remains available from
+Terra.
+
+This change takes effect after rebuilding and publishing the Gondor OS image,
+then upgrading the installed system and rebooting into that image. Changing a
+repository on the installed system alone does not update the image's packages.
+To check which executable and RPM are in use after reboot:
+
+```bash
+type -a noctalia
+rpm -qf "$(readlink -f "$(command -v noctalia)")"
+rpm -qi noctalia
+noctalia --version
+```
+
 ## Gondor OS greeter configuration
 
 Noctalia Greeter, launched by greetd, is the image's default login manager. The
