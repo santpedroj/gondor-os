@@ -17,8 +17,13 @@ dnf5 install -y \
   xdg-desktop-portal-gtk \
   xdg-desktop-portal-gnome
 
-# Noctalia desktop shell.
-dnf5 install -y noctalia
+# Use Fedora's Noctalia shell; keep Terra available for other packages.
+# Synchronize an inherited package too: install alone keeps it if already present.
+if rpm -q noctalia >/dev/null 2>&1; then
+  dnf5 distro-sync -y --refresh --from-repo=fedora,updates noctalia
+else
+  dnf5 install -y --refresh --from-repo=fedora,updates noctalia
+fi
 
 # functionality
 dnf5 install -y \
