@@ -41,6 +41,7 @@ dnf5 install -y \
 # cli
 dnf5 install -y \
   git \
+  ghostty \
   kitty \
   neovim \
   tmux \
