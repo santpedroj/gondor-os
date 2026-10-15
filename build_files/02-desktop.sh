@@ -1,15 +1,5 @@
-#!/bin/bash
-set -ouex pipefail
-
-# Terra is already included in the Bazzite base; no additional repository is needed.
-
-# apps
-dnf5 install -y \
-  brave-origin \
-  thunar \
-  thunar-archive-plugin \
-  thunar-volman \
-  zed
+#!/usr/bin/env bash
+set -euo pipefail
 
 # niri
 dnf5 install -y \
@@ -25,27 +15,6 @@ else
   dnf5 install -y --refresh --from-repo=fedora,updates noctalia
 fi
 
-# functionality
-dnf5 install -y \
-  file-roller \
-  kanshi \
-  gnome-keyring \
-  gnome-keyring-pam
-
-# screenshot
-dnf5 install -y \
-  grim \
-  slurp \
-  satty
-
-# cli
-dnf5 install -y \
-  git \
-  ghostty \
-  neovim \
-  tmux \
-  zsh
-
 # theming
 dnf5 install -y \
   adw-gtk3-theme \
@@ -58,6 +27,3 @@ dnf5 install -y greetd
 
 # Build-time RPM state is replaced by the system_files configuration afterward.
 rm -rf /var/lib/greetd/.config
-
-echo "Adding Gondor OS just recipes"
-echo "import \"/usr/share/gondor-os/just/gondor.just\"" >>/usr/share/ublue-os/just/60-custom.just

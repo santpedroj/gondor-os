@@ -16,7 +16,7 @@ if [[ -f /usr/lib/systemd/system/sddm.service ]]; then
 fi
 systemctl enable --force greetd.service
 
-# Verify the default login manager and its restored configuration after cleanup.
+# Verify the configured login manager and restored image defaults.
 rpm -q noctalia-greeter greetd >/dev/null
 test -x /usr/bin/noctalia-greeter
 test -x /usr/bin/noctalia-greeter-session
