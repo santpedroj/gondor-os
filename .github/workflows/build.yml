@@ -4,16 +4,22 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+      - 'Containerfile'
+      - 'build_files/**'
   schedule:
     - cron: '05 10 * * *'  # 10:05am UTC everyday
   push:
     branches:
       - main
-    paths-ignore:
-      - '**/README.md'
+    paths:
+      - 'Containerfile'
+      - 'build_files/**'
   workflow_dispatch:
 
 env:
+  IMAGE_DESC: "Niri experience based on Bazzite"
+  IMAGE_KEYWORDS: "bootc, niri, bazzite, gondor-os, ublue, universal-blue"
   IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"  # do not edit
 
 concurrency:
@@ -81,6 +87,16 @@ jobs:
           sudo -E $(command -v just) ostree-rechunk \
             ${IMAGE_NAME} \
             ${DEFAULT_TAG}
+
+      - name: Verify RPM database after rechunking
+        shell: bash
+        run: |
+          sudo podman run --rm \
+            --pull=never \
+            --entrypoint /usr/bin/bash \
+            --volume "${GITHUB_WORKSPACE}/build_files/shared/verify-rpmdb.sh:/verify-rpmdb.sh:ro" \
+            "localhost/${IMAGE_NAME}:${DEFAULT_TAG}" \
+            /verify-rpmdb.sh
 
       # If you are feeling adventurous, use the new distro agnostic rechunker
       # https://github.com/coreos/chunkah
@@ -161,4 +177,3 @@ jobs:
           # https://github.com/coreos/rpm-ostree/issues/5509
           # use old bundle format, so we can use newer cosign 3.X.X instead of 2.X.X
           cosign sign -y --new-bundle-format=false --use-signing-config=false --key env://COSIGN_PRIVATE_KEY ${IMAGE_REGISTRY}/${IMAGE_NAME}@${DIGEST}
-
