@@ -5,7 +5,7 @@ FROM scratch AS ctx
 COPY build_files /
 
 # Base Image
-FROM ${BASE_IMAGE} AS gondor-os
+FROM ${BASE_IMAGE} AS sant-os
 
 COPY system_files/etc/yum.repos.d/ /etc/yum.repos.d/
 RUN rm /opt && mkdir /opt

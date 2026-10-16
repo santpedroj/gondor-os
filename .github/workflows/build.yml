@@ -15,7 +15,7 @@ on:
 
 env:
   IMAGE_DESC: "Niri experience based on Bazzite"
-  IMAGE_KEYWORDS: "bootc, niri, bazzite, gondor-os, ublue, universal-blue"
+  IMAGE_KEYWORDS: "bootc, niri, bazzite, sant-os, ublue, universal-blue"
   IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"  # do not edit
 
 concurrency:

@@ -62,6 +62,6 @@ journalctl -b -u sddm.service
 Switch to SDDM for the next boot, then reboot:
 
 ```bash
-ujust gondor-greeter sddm
+ujust sant-greeter sddm
 sudo reboot
 ```

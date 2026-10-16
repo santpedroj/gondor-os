@@ -1,4 +1,4 @@
-# Gondor OS administrator defaults for Noctalia Greeter.
+# Sant OS administrator defaults for Noctalia Greeter.
 # Edit /etc/noctalia-greeter/greeter.toml on the installed system.
 # tmpfiles links the expected /var/lib path to this configuration.
 #

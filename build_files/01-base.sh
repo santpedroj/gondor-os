@@ -32,5 +32,5 @@ dnf5 install -y \
   tmux \
   zsh
 
-echo "Adding Gondor OS just recipes"
-echo "import \"/usr/share/gondor-os/just/gondor.just\"" >>/usr/share/ublue-os/just/60-custom.just
+echo "Adding Sant OS just recipes"
+echo "import \"/usr/share/sant-os/just/sant.just\"" >>/usr/share/ublue-os/just/60-custom.just

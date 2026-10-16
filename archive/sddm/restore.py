@@ -10,7 +10,7 @@ def main():
     repo = archive.parent.parent
     containerfile = repo / "Containerfile"
     installer = repo / "build_files/01-install.sh"
-    recipes = repo / "system_files/usr/share/gondor-os/just/gondor.just"
+    recipes = repo / "system_files/usr/share/sant-os/just/sant.just"
 
     container_text = containerfile.read_text()
     for anchor, step in [
@@ -28,8 +28,8 @@ def main():
         install_text = install_text.rstrip() + "\n\n# Restore the archived SDDM greeter.\n" + install_step + "\n"
 
     recipe_text = recipes.read_text()
-    if "gondor-greeter greeter:" not in recipe_text:
-        recipe_text = recipe_text.rstrip() + "\n\n" + (archive / "gondor-greeter.just").read_text()
+    if "sant-greeter greeter:" not in recipe_text:
+        recipe_text = recipe_text.rstrip() + "\n\n" + (archive / "sant-greeter.just").read_text()
 
     for category in ["system_files", "build_files", "docs"]:
         for source in (archive / category).rglob("*"):
@@ -42,7 +42,7 @@ def main():
     containerfile.write_text(container_text)
     recipes.write_text(recipe_text)
     print("SDDM and Astronaut restored to the repository. Rebuild and deploy the image.")
-    print("After booting it, run: ujust gondor-greeter sddm, then reboot.")
+    print("After booting it, run: ujust sant-greeter sddm, then reboot.")
 
 
 if __name__ == "__main__":
