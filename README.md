@@ -1,25 +1,25 @@
-# Sant OS
+# Gondor OS
 
 A personal Linux desktop image built on Bazzite NVIDIA Open, with Niri, Noctalia, and a curated selection of everyday and development tools.
 
-Sant OS replaces the inherited KDE Plasma desktop with a Wayland environment centered on Niri. Desktop packages, system services, and login defaults are defined in this repository and built into a bootc image.
+Gondor OS replaces the inherited KDE Plasma desktop with a Wayland environment centered on Niri. Desktop packages, system services, and login defaults are defined in this repository and built into a bootc image.
 
 ## Image overview
 
 | Component | Configuration |
 | --- | --- |
 | Base image | `ghcr.io/ublue-os/bazzite-nvidia-open:stable` |
-| Sant OS image | `ghcr.io/joaosant7/sant-os:latest` |
+| Gondor OS image | `ghcr.io/santpedroj/gondor-os:latest` |
 | Wayland compositor | Niri |
 | Desktop shell | Noctalia, sourced from Fedora repositories |
 | Login manager | Noctalia Greeter, sourced from Terra and launched by greetd |
 | System delivery | bootc container image published to GitHub Container Registry |
 
-The image follows Bazzite's `stable` NVIDIA Open base and publishes Sant OS builds under the `latest` tag. Hardware compatibility depends on the NVIDIA Open base image.
+The image follows Bazzite's `stable` NVIDIA Open base and publishes Gondor OS builds under the `latest` tag. Hardware compatibility depends on the NVIDIA Open base image.
 
 ## Included software
 
-Sant OS adds the following applications and tools to its base:
+Gondor OS adds the following applications and tools to its base:
 
 | Purpose | Software |
 | --- | --- |
@@ -34,12 +34,12 @@ Sant OS adds the following applications and tools to its base:
 
 The build removes inherited Plasma components, selected KDE applications, Lutris, Waydroid, and handheld-specific packages. Podman's socket is enabled for container tooling.
 
-## Switch to Sant OS
+## Switch to Gondor OS
 
-From an existing compatible bootc installation, stage the Sant OS image:
+From an existing compatible bootc installation, stage the Gondor OS image:
 
 ```bash
-sudo bootc switch ghcr.io/joaosant7/sant-os:latest
+sudo bootc switch ghcr.io/santpedroj/gondor-os:latest
 sudo reboot
 ```
 
@@ -51,11 +51,11 @@ sudo bootc status
 
 ## Optional application collections
 
-Sant OS includes two commands for installing the personal package collections maintained in this repository. These collections are installed separately from the system image.
+Gondor OS includes two commands for installing the personal package collections maintained in this repository. These collections are installed separately from the system image.
 
 ```bash
-ujust sant-install-flatpaks
-ujust sant-install-brews
+ujust gondor-install-flatpaks
+ujust gondor-install-brews
 ```
 
 The [Flatpak collection](repo_files/flatpaks) includes OBS Studio, ONLYOFFICE, Podman Desktop, Prism Launcher, Flatseal, and other desktop applications. The [Homebrew collection](repo_files/brews) includes tools such as Atuin, bat, btop, fzf, lazygit, ripgrep, uv, Yazi, and Zoxide.
@@ -78,9 +78,11 @@ With Podman, just, and jq installed, build the image from the repository root:
 just build
 ```
 
-This produces `sant-os:latest` in local container storage. The [Containerfile](Containerfile) defines the base image and build sequence; [build_files](build_files) contains package and service customization scripts, and [system_files](system_files) contains the files applied to the image.
+This produces `gondor-os:latest` in local container storage. The [Containerfile](Containerfile) defines the base image and build sequence; [build_files](build_files) contains package and service customization scripts, and [system_files](system_files) contains the files applied to the image.
 
 The container workflow is configured to build daily at 10:05 UTC, on qualifying pushes to `main`, and on manual runs. Pull requests build for validation. Publishing and signing are restricted to runs on the repository's default branch outside pull requests.
+
+The image is published as `ghcr.io/santpedroj/gondor-os`. Its source links follow the GitHub repository independently of the image name.
 
 ## License
 

@@ -20,18 +20,18 @@ just build
 
 The command copies the archived files to their original active directories,
 adds SDDM package and theme installation to the build, selects SDDM after the
-Noctalia service setup, and restores `ujust sant-greeter`. Repeated runs do not
+Noctalia service setup, and restores `ujust gondor-greeter`. Repeated runs do not
 duplicate build steps or recipes. Review the diff, deploy the rebuilt image,
 and boot it. For an existing installation with local service overrides, select
 SDDM explicitly:
 
 ```bash
-ujust sant-greeter sddm
+ujust gondor-greeter sddm
 sudo reboot
 ```
 
 Noctalia remains installed after restoration and can be selected again with
-`ujust sant-greeter noctalia`. Switching affects the next boot without
+`ujust gondor-greeter noctalia`. Switching affects the next boot without
 stopping the current session.
 
 See [the archived customization guide](docs/sddm.md). Configuration and the

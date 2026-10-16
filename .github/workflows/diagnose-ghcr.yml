@@ -3,15 +3,6 @@ name: Diagnose GHCR access
 
 on:
   workflow_dispatch:
-    inputs:
-      package-name:
-        description: GHCR package to test
-        required: true
-        default: gondor-os
-        type: choice
-        options:
-          - gondor-os
-          - sant-os
 
 permissions:
   contents: read
@@ -22,7 +13,7 @@ jobs:
     name: Test native Podman login and a tiny image push
     runs-on: ubuntu-26.04
     env:
-      IMAGE_NAME: ${{ inputs.package-name }}
+      IMAGE_NAME: gondor-os
       IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
 
     steps:
@@ -61,7 +52,7 @@ jobs:
             "$local_image" "$destination"; then
             printf 'SUCCESS: native Podman can push to this package.\n' >> "$GITHUB_STEP_SUMMARY"
             printf 'Diagnostic image: `%s`\n' "$destination" >> "$GITHUB_STEP_SUMMARY"
-            printf 'Next: compare the main workflow authfile and OS image push.\n' >> "$GITHUB_STEP_SUMMARY"
+            printf 'Run the regular OS build to publish Gondor OS.\n' >> "$GITHUB_STEP_SUMMARY"
           else
             printf 'FAILED: even a tiny image cannot be pushed with native Podman login.\n' >> "$GITHUB_STEP_SUMMARY"
             printf 'If the error is 403, check package Actions access for `%s` and account/package policy.\n' "$GITHUB_REPOSITORY" >> "$GITHUB_STEP_SUMMARY"

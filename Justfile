@@ -1,9 +1,11 @@
 set dotenv-filename := "image-template.env"
 set dotenv-load
 
-export image_name := env("IMAGE_NAME", "sant-os")
+export image_name := env("IMAGE_NAME", "gondor-os")
 export default_tag := env("DEFAULT_TAG", "latest")
 export repo_organization := env_var("REPO_ORGANIZATION")
+# Source links follow the GitHub repository, independently of the image name.
+export source_repository := env("GITHUB_REPOSITORY", `git remote get-url origin | sed -E 's#^.*github.com[:/]##; s#\.git$##'`)
 export image_desc := env_var("IMAGE_DESC")
 export image_keywords := env_var("IMAGE_KEYWORDS")
 export image_logo_url := env_var("IMAGE_LOGO_URL")
@@ -102,10 +104,10 @@ build $target_image=image_name $tag=default_tag:
     LABELS=()
     if [[ -z "$(git status -s)" ]]; then
         GIT_SHA=$(git rev-parse --short HEAD)
-        LABELS+=("--label" "io.artifacthub.package.readme-url=https://raw.githubusercontent.com/{{ repo_organization }}/{{ image_name }}/${GIT_SHA}/README.md")
-        LABELS+=("--label" "org.opencontainers.image.documentation=https://raw.githubusercontent.com/{{ repo_organization }}/{{ image_name }}/${GIT_SHA}/README.md")
-        LABELS+=("--label" "org.opencontainers.image.source=https://github.com/{{ repo_organization }}/{{ image_name }}/blob/${GIT_SHA}/Containerfile")
-        LABELS+=("--label" "org.opencontainers.image.url=https://github.com/{{ repo_organization }}/{{ image_name }}/tree/${GIT_SHA}")
+        LABELS+=("--label" "io.artifacthub.package.readme-url=https://raw.githubusercontent.com/{{ source_repository }}/${GIT_SHA}/README.md")
+        LABELS+=("--label" "org.opencontainers.image.documentation=https://raw.githubusercontent.com/{{ source_repository }}/${GIT_SHA}/README.md")
+        LABELS+=("--label" "org.opencontainers.image.source=https://github.com/{{ source_repository }}")
+        LABELS+=("--label" "org.opencontainers.image.url=https://github.com/{{ source_repository }}/tree/${GIT_SHA}")
         LABELS+=("--label" "org.opencontainers.image.version={{ default_tag }}.$(date +%Y%m%d)-${GIT_SHA}")
     fi
 

@@ -1,5 +1,5 @@
 # Select the login manager for the next boot without interrupting this session.
-sant-greeter greeter:
+gondor-greeter greeter:
     #!/usr/bin/env bash
     set -euo pipefail
 
@@ -14,7 +14,7 @@ sant-greeter greeter:
         sudo systemctl enable --force greetd.service
         ;;
       *)
-        echo "Usage: ujust sant-greeter sddm|noctalia" >&2
+        echo "Usage: ujust gondor-greeter sddm|noctalia" >&2
         exit 2
         ;;
     esac
