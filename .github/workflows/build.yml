@@ -71,7 +71,7 @@ jobs:
       - name: Build Image
         id: build-image
         run: |
-          just build \
+          sudo -E "$(command -v just)" build \
             ${IMAGE_NAME} \
             ${DEFAULT_TAG}
 
@@ -79,7 +79,7 @@ jobs:
       - name: Rechunk with rpm-ostree
         id: rechunk
         run: |
-          just ostree-rechunk \
+          sudo -E "$(command -v just)" ostree-rechunk \
             ${IMAGE_NAME} \
             ${DEFAULT_TAG}
 
@@ -109,7 +109,7 @@ jobs:
         env:
           ALIAS_TAGS: ${{ steps.gen-build-tags.outputs.alias_tags }}
         run: |
-          just tag-images \
+          sudo -E "$(command -v just)" tag-images \
             "${IMAGE_NAME}" \
             "${DEFAULT_TAG}" \
             "${ALIAS_TAGS}"
@@ -132,7 +132,11 @@ jobs:
         run: |
           set -euox pipefail
           for tag in ${ALIAS_TAGS}; do
-            podman push --digestfile=/tmp/digestfile ${IMAGE_NAME}:${tag} ${IMAGE_REGISTRY}/${IMAGE_NAME}:${tag}
+            sudo -E podman push \
+              --authfile "${DOCKER_CONFIG:-$HOME/.docker}/config.json" \
+              --digestfile=/tmp/digestfile \
+              "${IMAGE_NAME}:${tag}" \
+              "${IMAGE_REGISTRY}/${IMAGE_NAME}:${tag}"
           done
 
           digest=$(< /tmp/digestfile)
