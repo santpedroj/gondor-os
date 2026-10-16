@@ -143,7 +143,12 @@ jobs:
         run: |
           set -euox pipefail
           for tag in ${ALIAS_TAGS}; do
-            sudo -E podman push --digestfile=/tmp/digestfile ${IMAGE_NAME}:${tag} ${IMAGE_REGISTRY}/${IMAGE_NAME}:${tag}
+            # Pass the runner's Docker credentials explicitly to rootful Podman.
+            sudo -E podman push \
+              --authfile "${DOCKER_CONFIG:-$HOME/.docker}/config.json" \
+              --digestfile=/tmp/digestfile \
+              "${IMAGE_NAME}:${tag}" \
+              "${IMAGE_REGISTRY}/${IMAGE_NAME}:${tag}"
           done
 
           digest=$(< /tmp/digestfile)
