@@ -1,0 +1,66 @@
+---
+name: Diagnose GHCR access
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  diagnose:
+    name: Test native Podman login and a tiny image push
+    runs-on: ubuntu-26.04
+    env:
+      IMAGE_NAME: sant-os
+      IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+
+    steps:
+      - name: Log in with Podman
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf '%s' "$GHCR_TOKEN" | sudo podman login ghcr.io \
+            --username "$GITHUB_ACTOR" \
+            --password-stdin \
+            --authfile "${RUNNER_TEMP}/ghcr-diagnostics-auth.json"
+
+      - name: Push a tiny image to a unique diagnostic tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          context="$(mktemp -d "${RUNNER_TEMP}/ghcr-diagnostics.XXXXXX")"
+          trap 'rm -rf "$context"' EXIT
+          printf 'GHCR access test\n' > "$context/probe.txt"
+          printf 'FROM scratch\nCOPY probe.txt /probe.txt\n' > "$context/Containerfile"
+
+          local_image="localhost/ghcr-diagnostics:${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          registry="${IMAGE_REGISTRY,,}"
+          destination="${registry}/${IMAGE_NAME}:ghcr-debug-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          printf 'Testing push access to %s\n' "$destination"
+
+          sudo podman build \
+            --label "org.opencontainers.image.source=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}" \
+            --tag "$local_image" \
+            --file "$context/Containerfile" "$context"
+
+          if sudo podman push \
+            --authfile "${RUNNER_TEMP}/ghcr-diagnostics-auth.json" \
+            "$local_image" "$destination"; then
+            printf 'SUCCESS: native Podman can push to this package.\n' >> "$GITHUB_STEP_SUMMARY"
+            printf 'Diagnostic image: `%s`\n' "$destination" >> "$GITHUB_STEP_SUMMARY"
+            printf 'Next: compare the main workflow authfile and OS image push.\n' >> "$GITHUB_STEP_SUMMARY"
+          else
+            printf 'FAILED: even a tiny image cannot be pushed with native Podman login.\n' >> "$GITHUB_STEP_SUMMARY"
+            printf 'If the error is 403, check package Actions access for `%s` and account/package policy.\n' "$GITHUB_REPOSITORY" >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+
+      - name: Remove diagnostic login
+        if: always()
+        shell: bash
+        run: |
+          sudo rm -f "${RUNNER_TEMP}/ghcr-diagnostics-auth.json"
