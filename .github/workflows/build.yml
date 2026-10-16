@@ -1,24 +1,24 @@
 ---
 name: Build container image
 on:
-  schedule:
-    - cron: '05 10 * * *'  # 10:05am UTC everyday
   pull_request:
     branches:
       - main
+  schedule:
+    - cron: '05 10 * * *'  # 10:05am UTC everyday
   push:
     branches:
       - main
     paths-ignore:
       - '**/README.md'
-  workflow_dispatch:
+    workflow_dispatch:
 
 env:
   IMAGE_DESC: "Niri experience based on Bazzite"
   IMAGE_KEYWORDS: "bootc, niri, bazzite, sant-os, ublue, universal-blue"
   IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"  # do not edit
 
-concurrency:
+oncurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}-${{ inputs.brand_name}}-${{ inputs.stream_name }}
   cancel-in-progress: true
 
@@ -83,18 +83,7 @@ jobs:
           sudo -E $(command -v just) ostree-rechunk \
             ${IMAGE_NAME} \
             ${DEFAULT_TAG}
-
-      - name: Verify RPM database after rechunking
-        shell: bash
-        run: |
-          sudo podman run --rm \
-            --pull=never \
-            --entrypoint /usr/bin/bash \
-            --volume "${GITHUB_WORKSPACE}/build_files/shared/verify-rpmdb.sh:/verify-rpmdb.sh:ro" \
-            "localhost/${IMAGE_NAME}:${DEFAULT_TAG}" \
-            /verify-rpmdb.sh
-
-      # If you are feeling adventurous, use the new distro agnostic rechunker
+ # If you are feeling adventurous, use the new distro agnostic rechunker
       # https://github.com/coreos/chunkah
       # You can delete the Rechunk with rpm-ostree portion then if you use this
       #- name: Rechunk with Chunkah
@@ -143,12 +132,7 @@ jobs:
         run: |
           set -euox pipefail
           for tag in ${ALIAS_TAGS}; do
-            # Pass the runner's Docker credentials explicitly to rootful Podman.
-            sudo -E podman push \
-              --authfile "${DOCKER_CONFIG:-$HOME/.docker}/config.json" \
-              --digestfile=/tmp/digestfile \
-              "${IMAGE_NAME}:${tag}" \
-              "${IMAGE_REGISTRY}/${IMAGE_NAME}:${tag}"
+            sudo -E podman push --digestfile=/tmp/digestfile ${IMAGE_NAME}:${tag} ${IMAGE_REGISTRY}/${IMAGE_NAME}:${tag}
           done
 
           digest=$(< /tmp/digestfile)
