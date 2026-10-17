@@ -1,15 +1,18 @@
 #!/bin/bash
 set -ouex pipefail
 
-# Terra is already included in the Bazzite base; no additional repository is needed.
+# Terra packages
+dnf5 install -y --from-repo=terra --setopt=terra.excludepkgs=noctalia \
+  zed \
+  ghostty \
+  satty
 
 # apps
 dnf5 install -y \
   brave-origin \
   thunar \
   thunar-archive-plugin \
-  thunar-volman \
-  zed
+  thunar-volman
 
 # functionality
 dnf5 install -y \
@@ -21,13 +24,11 @@ dnf5 install -y \
 # screenshot
 dnf5 install -y \
   grim \
-  slurp \
-  satty
+  slurp
 
 # cli
 dnf5 install -y \
   git \
-  ghostty \
   neovim \
   tmux \
   zsh
