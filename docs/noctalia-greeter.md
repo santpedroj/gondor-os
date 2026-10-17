@@ -1,10 +1,13 @@
 # Noctalia Greeter configuration and use
 
 Noctalia Greeter is the default login manager, launched by greetd. The build uses
-`dnf5 install -y --from-repo=terra noctalia-greeter` to select the Terra package
-from the repository already shipped by Bazzite. No additional repository or
-Lionheart COPR is enabled. Dependencies are resolved from the enabled base
-repositories; greetd is installed separately.
+`dnf5 install -y --from-repo=terra --setopt=terra.excludepkgs=noctalia`
+to install Noctalia Greeter and nwg-look from the repository already shipped by
+Bazzite.
+Zed, Ghostty, and Satty use the same repository options in `01-base.sh`.
+No additional repository or Lionheart COPR is enabled. Dependencies are resolved from the enabled base
+repositories; greetd is installed separately. Terra is enabled only for the
+transaction, and its Noctalia shell is excluded to preserve Fedora's package.
 
 See the upstream [installation guide](https://docs.noctalia.dev/greeter/installation/)
 and DNF5's [`--from-repo` option](https://dnf5.readthedocs.io/en/latest/commands/install.8.html).
