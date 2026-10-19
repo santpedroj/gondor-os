@@ -4,7 +4,8 @@ set -euo pipefail
 # Reuse Bazzite's Terra repo for these desktop packages.
 dnf5 install -y --from-repo=terra --setopt=terra.excludepkgs=noctalia \
   noctalia-greeter \
-  nwg-look
+  nwg-look \
+  umbriel
 
 dnf5 install -y greetd
 
