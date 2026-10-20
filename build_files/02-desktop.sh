@@ -5,7 +5,7 @@ set -euo pipefail
 dnf5 install -y --from-repo=terra --setopt=terra.excludepkgs=noctalia \
   noctalia-greeter \
   nwg-look \
-  umbriel
+  umbriel-nightly
 
 dnf5 install -y greetd
 
