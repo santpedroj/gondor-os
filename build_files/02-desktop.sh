@@ -13,7 +13,8 @@ dnf5 install -y greetd
 dnf5 install -y \
   niri \
   xdg-desktop-portal-gtk \
-  xdg-desktop-portal-gnome
+  xdg-desktop-portal-gnome \
+  xdg-desktop-portal-kde
 
 # Use Fedora's Noctalia shell; Terra stays disabled outside explicit installs.
 # Synchronize an inherited package too: install alone keeps it if already present.
