@@ -76,7 +76,7 @@ hide_logo = true
 #scale = 1.5
 
 [output]
-scales = "HDMI-A-1: 1; eDP-1: 1"
+scales = "HDMI-A-1:1; eDP-1:1"
 
 [idle]
 # Seconds with no input before blanking outputs; 0 disables (range 0-86400).
