@@ -13,6 +13,7 @@ dnf5 install -y --from-repo=terra --setopt=terra.excludepkgs=noctalia \
 # apps
 dnf5 install -y \
   brave-origin \
+  pcmanfm-qt \
   thunar \
   thunar-archive-plugin \
   thunar-volman
