@@ -12,15 +12,15 @@ dnf5 install -y --from-repo=terra --setopt=terra.excludepkgs=noctalia \
 
 # apps
 dnf5 install -y \
-  brave-origin \
-  dolphin \
-  thunar \
-  thunar-archive-plugin \
-  thunar-volman
+  brave-origin
+
+# file manager
+dnf5 install -y \
+  ark \
+  dolphin
 
 # functionality
 dnf5 install -y \
-  file-roller \
   kanshi \
   gnome-keyring \
   gnome-keyring-pam
