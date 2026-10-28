@@ -6,7 +6,9 @@ set -ouex pipefail
 # portal pulls in kf6-kio-core, which makes ghostty-kio a required dependency.
 dnf5 install -y --from-repo=terra --setopt=terra.excludepkgs=noctalia \
   zed \
-  satty
+  satty \
+  ghostty \
+  ghostty-kio
 
 # apps
 dnf5 install -y \
