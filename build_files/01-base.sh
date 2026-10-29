@@ -23,6 +23,7 @@ dnf5 install -y \
 # functionality
 dnf5 install -y \
   fcitx5 \
+  fcitx5-configtool \
   fcitx5-gtk \
   fcitx5-qt \
   kanshi \
