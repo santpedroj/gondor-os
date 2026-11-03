@@ -6,31 +6,31 @@ Gondor OS replaces the inherited KDE Plasma desktop with a Wayland environment c
 
 ## Image overview
 
-| Component | Configuration |
-| --- | --- |
-| Base image | `ghcr.io/ublue-os/bazzite-nvidia-open:stable` |
-| Gondor OS image | `ghcr.io/santpedroj/gondor-os:latest` |
-| Wayland compositor | Niri |
-| Desktop shell | Noctalia, sourced from Fedora repositories |
-| Login manager | Noctalia Greeter, sourced from Terra and launched by greetd |
-| System delivery | bootc container image published to GitHub Container Registry |
+The image follows Bazzite's `stable` NVIDIA Open base and publishes Gondor OS builds under the `latest` tag.
 
-The image follows Bazzite's `stable` NVIDIA Open base and publishes Gondor OS builds under the `latest` tag. Hardware compatibility depends on the NVIDIA Open base image.
+| Component          | Configuration                                                |
+| ------------------ | ------------------------------------------------------------ |
+| Base image         | `ghcr.io/ublue-os/bazzite-nvidia-open:stable`                |
+| Gondor OS image    | `ghcr.io/santpedroj/gondor-os:latest`                        |
+| Wayland compositor | Niri (primary); Umbriel (secondary)                          |
+| Desktop shell      | Noctalia (dnf)                                               |
+| Login manager      | Noctalia Greeter (Terra third-party repo)                    |
+| System delivery    | bootc container image published to GitHub Container Registry |
 
 ## Included software
 
 Gondor OS adds the following applications and tools to its base:
 
-| Purpose | Software |
-| --- | --- |
-| Web browser | Brave Origin |
-| File management | Thunar, Thunar Archive Plugin, Thunar Volume Manager, File Roller |
-| Terminal and editors | Ghostty, Zed, Neovim |
-| Command line | Git, tmux, Zsh |
-| Screenshots and annotation | grim, slurp, Satty |
-| Display configuration | kanshi |
-| Appearance | adw-gtk3, nwg-look, qt6ct |
-| Credential storage | GNOME Keyring |
+| Purpose                    | Software                                                          |
+| -------------------------- | ----------------------------------------------------------------- |
+| Web browser                | Brave Origin                                                      |
+| File management            | Thunar, Thunar Archive Plugin, Thunar Volume Manager, File Roller |
+| Terminal and editors       | ghostty, zed, neovim                                              |
+| Command line               | git, tmux, zsh                                                    |
+| Screenshots and annotation | grim, slurp, satty                                                |
+| Display configuration      | kanshi                                                            |
+| Appearance                 | adw-gtk3, nwg-look, qt6ct                                         |
+| Credential storage         | GNOME Keyring                                                     |
 
 The build removes inherited Plasma components, selected KDE applications, Lutris, Waydroid, and handheld-specific packages. Podman's socket is enabled for container tooling.
 
