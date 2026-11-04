@@ -22,7 +22,9 @@ dnf5 install -y \
 dnf5 install -y \
   kanshi \
   gnome-keyring \
-  gnome-keyring-pam
+  gnome-keyring-pam \
+  udisks2 \
+  gvfs
 
 # screenshot
 dnf5 install -y \
