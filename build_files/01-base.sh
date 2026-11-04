@@ -15,10 +15,11 @@ dnf5 install -y \
 
 # file manager
 dnf5 install -y \
-  thunar \
-  thunar-archive-plugin \
-  thunar-volman \
-  nemo
+  nautilus \
+  gnome-terminal-nautilus \
+  file-roller-nautilus \
+  file-roller \
+  sushi
 
 # functionality
 dnf5 install -y \
