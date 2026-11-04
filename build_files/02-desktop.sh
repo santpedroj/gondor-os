@@ -16,13 +16,18 @@ dnf5 install -y \
   xdg-desktop-portal-gnome \
   xdg-desktop-portal-kde
 
+# Install/update Noctalia exclusively from Fedora.
+dnf5 install -y --refresh \
+  --from-repo=fedora,updates \
+  noctalia
+
 # Use Fedora's Noctalia shell; Terra stays disabled outside explicit installs.
 # Synchronize an inherited package too: install alone keeps it if already present.
-if rpm -q noctalia >/dev/null 2>&1; then
-  dnf5 distro-sync -y --refresh --from-repo=fedora,updates noctalia
-else
-  dnf5 install -y --refresh --from-repo=fedora,updates noctalia
-fi
+#if rpm -q noctalia >/dev/null 2>&1; then
+#dnf5 distro-sync -y --refresh --from-repo=fedora,updates noctalia
+#else
+#dnf5 install -y --refresh --from-repo=fedora,updates noctalia
+#fi
 
 # theming
 dnf5 install -y \
