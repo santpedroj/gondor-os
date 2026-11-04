@@ -15,9 +15,10 @@ dnf5 install -y \
 
 # file manager
 dnf5 install -y \
-  ark \
-  dolphin \
-  nautilus
+  thunar \
+  thunar-archive-plugin \
+  thunar-volman \
+  nemo
 
 # functionality
 dnf5 install -y \
