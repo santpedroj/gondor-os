@@ -2,8 +2,6 @@
 set -ouex pipefail
 
 # Terra packages
-# Install Ghostty's matching KIO integration while Terra is available; the KDE
-# portal pulls in kf6-kio-core, which makes ghostty-kio a required dependency.
 dnf5 install -y --from-repo=terra --setopt=terra.excludepkgs=noctalia \
   zed \
   satty
@@ -15,11 +13,10 @@ dnf5 install -y \
 
 # file manager
 dnf5 install -y \
-  nautilus \
-  gnome-terminal-nautilus \
-  file-roller-nautilus \
-  file-roller \
-  sushi
+  thunar \
+  thunar-archive-plugin \
+  thunar-volman \
+  file-roller
 
 # functionality
 dnf5 install -y \
