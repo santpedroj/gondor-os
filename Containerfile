@@ -30,7 +30,6 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     bash /ctx/04-services.sh && \
     bash /ctx/05-noctalia-greeter.sh && \
     bash /ctx/99-cleanup.sh && \
-    ostree container commit
 
 ### LINTING
 ## Verify final image and contents are correct.
