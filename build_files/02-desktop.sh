@@ -13,8 +13,8 @@ dnf5 install -y greetd
 dnf5 install -y \
   niri \
   xdg-desktop-portal-gtk \
-  xdg-desktop-portal-gnome \
-  xdg-desktop-portal-kde
+  xdg-desktop-portal-gnome
+#xdg-desktop-portal-kde
 
 # Install/update Noctalia exclusively from Fedora.
 dnf5 install -y --refresh \
