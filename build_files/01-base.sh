@@ -3,14 +3,14 @@ set -ouex pipefail
 
 # Terra packages
 dnf5 install -y --from-repo=terra --setopt=terra.excludepkgs=noctalia \
+  ghostty \
   zed \
   satty
 
 # apps
 dnf5 install -y \
   brave-origin \
-  kitty \
-  ghostty
+  kitty
 
 # file manager
 dnf5 install -y \
