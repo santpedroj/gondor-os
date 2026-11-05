@@ -23,6 +23,7 @@ dnf5 install -y --refresh \
 
 # theming
 dnf5 install -y \
+  adwaita-icon-theme \
   adw-gtk3-theme \
   qt6ct
 
