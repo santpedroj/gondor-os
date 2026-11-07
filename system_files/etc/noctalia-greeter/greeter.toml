@@ -2,6 +2,7 @@
 # Edit /etc/noctalia-greeter/greeter.toml on the installed system.
 # tmpfiles links the expected /var/lib path to this configuration.
 #
+
 # This file is the full admin config. Sync and the login UI never write it.
 # Mutable Sync/UI data lives in sync.toml (lower priority when both set).
 # Sync merges palette/wallpaper/session into sync.toml; a complete [appearance.palette] here wins.
@@ -27,6 +28,27 @@ password_style = "default"
 # Hide the Noctalia brand logo on the login screen.
 hide_logo = true
 # Leave theme mode, corner radius, and font unset so Noctalia Sync controls them.
+power_buttons_position = "bottom-right"
+# Scheme picker: top-right (default), top-left, bottom-left, bottom-right, or hidden.
+scheme_selector_position = "top-right"
+theme_mode = "dark"
+corner_radius_scale = 1.0
+# Optional; empty / omit keeps the greeter default font.
+font_family = "Rubik"
+
+[clock]
+# Show the clock (default true). The default position centers it above the login panel.
+enabled = true
+# above-panel (default), top-left, top-center, top-right, bottom-left, bottom-center, or bottom-right.
+# Corner occupants stack inward without overlapping: scheme selector, power buttons, then clock.
+# bottom-center uses the logo slot when hide_logo is true, or stacks above a visible logo.
+position = "above-panel"
+# Noctalia-compatible bare strftime or C++ chrono formats. Empty hides that line.
+time_format = "{:%H:%M}"
+date_format = "%A, %x"
+# Font sizes in logical pixels before UI scaling; positive integers or decimals.
+time_font_size = 48
+date_font_size = 28
 
 # Required for a declarative Synced look (same keys Sync writes under [appearance.palette]).
 # When complete, this wins over Sync's sync.toml appearance.
@@ -76,7 +98,7 @@ hide_logo = true
 #scale = 1.5
 
 [output]
-scales = "HDMI-A-1:1; eDP-1:1"
+scales = "HDMI-A-1:1; eDP-1:1.5"
 
 [idle]
 # Seconds with no input before blanking outputs; 0 disables (range 0-86400).
@@ -99,3 +121,4 @@ numlock = true
 [auth]
 # Allow empty password submit (fprintd / smartcard PAM). Default false.
 allow_empty_password = false
+
