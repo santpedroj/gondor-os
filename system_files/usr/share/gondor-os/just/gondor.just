@@ -4,7 +4,7 @@ gondor-install-brews:
     set -euo pipefail
 
     echo "Installing Homebrews..."
-    xargs -a <(curl --retry 3 -sL https://raw.githubusercontent.com/santpedroj/sant-os/main/repo_files/brews) brew install
+    xargs -a <(curl --retry 3 -sL https://raw.githubusercontent.com/santpedroj/gondor-os/main/repo_files/brews) brew install
     echo "Homebrews installation complete."
 
 # Install my personal flatpaks
@@ -13,7 +13,7 @@ gondor-install-flatpaks:
     set -euo pipefail
 
     echo "Installing Flatpaks..."
-    xargs -a <(curl --retry 3 -sL https://raw.githubusercontent.com/santpedroj/sant-os/main/repo_files/flatpaks) flatpak --system -y install
+    xargs -a <(curl --retry 3 -sL https://raw.githubusercontent.com/santpedroj/gondor-os/main/repo_files/flatpaks) flatpak --system -y install
     echo "Flatpaks installation complete."
 
 
@@ -24,7 +24,7 @@ gondor-install-brews:
     set -euo pipefail
 
     echo "Installing Homebrews..."
-    xargs -a <(curl --retry 3 -fsSL https://raw.githubusercontent.com/santpedroj/sant-os/main/repo_files/brews) brew install
+    xargs -a <(curl --retry 3 -fsSL https://raw.githubusercontent.com/santpedroj/gondor-os/main/repo_files/brews) brew install
 
     echo "Installing non-free fonts..."
     brew tap colindean/fonts-nonfree
