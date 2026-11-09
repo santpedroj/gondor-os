@@ -17,7 +17,8 @@ gondor-install-flatpaks:
     echo "Flatpaks installation complete."
 
 
-# Install my personal homebrew packages
+# Install non-free fonts
+# brew tap colindean/fonts-nonfree && brew install --cask font-microsoft-office font-microsoft-aptos font-arial font-arial-black font-courier-new font-times-new-roman font-georgia
 gondor-install-brews:
     #!/usr/bin/env bash
     set -euo pipefail
