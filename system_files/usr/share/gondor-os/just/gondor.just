@@ -28,7 +28,7 @@ gondor-install-brews:
 
     echo "Installing non-free fonts..."
     brew tap colindean/fonts-nonfree
-    brew install --cask \
+    brew install \
         font-microsoft-office \
         font-microsoft-aptos \
         font-arial \
