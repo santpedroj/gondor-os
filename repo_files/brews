@@ -26,3 +26,8 @@ yazi
 yt-dlp
 zoxide
 zsh-patina
+zsh-autosuggestions
+zsh-vi-mode
+zsh-history-substring-search
+--cask font-rubik
+--cask font-inter
