@@ -16,15 +16,13 @@ gondor-install-flatpaks:
     xargs -a <(curl --retry 3 -sL https://raw.githubusercontent.com/santpedroj/gondor-os/main/repo_files/flatpaks) flatpak --system -y install
     echo "Flatpaks installation complete."
 
-
 # Install non-free fonts
 # brew tap colindean/fonts-nonfree && brew install --cask font-microsoft-office font-microsoft-aptos font-arial font-arial-black font-courier-new font-times-new-roman font-georgia
-gondor-install-brews:
+gondor-install-ms-fonts:
     #!/usr/bin/env bash
     set -euo pipefail
 
-    echo "Installing Homebrews..."
-    xargs -a <(curl --retry 3 -fsSL https://raw.githubusercontent.com/santpedroj/gondor-os/main/repo_files/brews) brew install
+    echo "Installing MS Fonts..."
 
     echo "Installing non-free fonts..."
     brew tap colindean/fonts-nonfree
@@ -37,5 +35,4 @@ gondor-install-brews:
         font-times-new-roman \
         font-georgia
 
-    echo "Homebrews installation complete."
-
+    echo "MS Fonts installation complete."
