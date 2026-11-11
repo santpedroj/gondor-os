@@ -1,3 +1,6 @@
+# Gondor OS scripts
+#xargs -a: reads arguments from a specified file and passes them to the given command.
+
 # Install my personal homebrew packages
 gondor-install-brews:
     #!/usr/bin/env bash
@@ -24,7 +27,6 @@ gondor-install-ms-fonts:
 
     echo "Installing MS Fonts..."
 
-    echo "Installing non-free fonts..."
     brew tap colindean/fonts-nonfree
     brew install \
         font-microsoft-office \
@@ -36,3 +38,14 @@ gondor-install-ms-fonts:
         font-georgia
 
     echo "MS Fonts installation complete."
+
+gondor-install-papirus-icon:
+  #!/usr/vin/env bash
+  set -euo pipefail
+
+  echo "Installing Papirus Icon Theme..."
+  
+  wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="$HOME/.local/share/icons" sh 
+  wget -qO- https://git.io/papirus-folders-install | env PREFIX=$HOME/.local sh
+
+  echo "Papirus Icon Theme installation complete."
