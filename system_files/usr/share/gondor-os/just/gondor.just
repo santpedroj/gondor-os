@@ -40,11 +40,11 @@ gondor-install-ms-fonts:
     echo "MS Fonts installation complete."
 
 gondor-install-papirus-icon:
-  #!/usr/vin/env bash
+  #!/usr/bin/env bash
   set -euo pipefail
 
   echo "Installing Papirus Icon Theme..."
-  
+ 
   wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="$HOME/.local/share/icons" sh 
   wget -qO- https://git.io/papirus-folders-install | env PREFIX=$HOME/.local sh
 
