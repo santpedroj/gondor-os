@@ -1,10 +1,12 @@
 atuin
 bat
 btop
+--cask font-inter
+--cask font-jetbrains-mono-nerd-font
+--cask font-rubik
 cosign
 eza
 fd
-font-jetbrains-mono-nerd-font
 fzf
 gdu
 gh
@@ -29,5 +31,3 @@ zsh-patina
 zsh-autosuggestions
 zsh-vi-mode
 zsh-history-substring-search
---cask font-rubik
---cask font-inter
