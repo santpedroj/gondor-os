@@ -36,15 +36,15 @@ sed -i 's/^IMAGE_ID=bazzite/IMAGE_ID=gondor-os/' /usr/lib/os-release
 
 # Install Gondor branding files for fastfetch
 mkdir -p /usr/share/ublue-os/gondor-os
-cp /ctx/build_files/gondor/logo.txt /usr/share/ublue-os/gondor-os/
-cp /ctx/build_files/gondor/fastfetch.jsonc /usr/share/ublue-os/gondor-os/
+cp /ctx/build/gondor/logo.txt /usr/share/ublue-os/gondor-os/
+cp /ctx/build/gondor/fastfetch.jsonc /usr/share/ublue-os/gondor-os/
 
 # Override Bazzite's fastfetch aliases with Gondor config
 # Using 'zzz-' prefix ensures this runs after bazzite-neofetch.sh
-cp /ctx/build_files/gondor/gondor-fastfetch.sh /etc/profile.d/zzz-gondor-fastfetch.sh
+cp /ctx/build/gondor/gondor-fastfetch.sh /etc/profile.d/zzz-gondor-fastfetch.sh
 
 # Replace Bazzite MOTD with Gondor MOTD
-cp /ctx/build_files/gondor/motd.md /usr/share/ublue-os/motd/gondor.md
+cp /ctx/build/gondor/motd.md /usr/share/ublue-os/motd/gondor.md
 # Remove Bazzite-specific MOTD if it exists
 rm -f /usr/share/ublue-os/motd/bazzite.md
 
@@ -61,7 +61,7 @@ fi
 # Replace MOTD tips with Gondor-specific tips
 rm -f /usr/share/ublue-os/motd/tips/10-ublue.md
 rm -f /usr/share/ublue-os/motd/tips/20-bazzite.md
-cp /ctx/build_files/gondor/tips.md /usr/share/ublue-os/motd/tips/10-gondor.md
+cp /ctx/build/gondor/tips.md /usr/share/ublue-os/motd/tips/10-gondor.md
 
 # =============================================================================
 # PACKAGES
