@@ -2,7 +2,7 @@ ARG BASE_IMAGE="ghcr.io/ublue-os/bazzite-nvidia-open:stable"
 
 # Allow build scripts to be referenced without being copied into the final image
 FROM scratch AS ctx
-COPY build_files /
+COPY build_files /build
 
 # Base Image
 FROM ${BASE_IMAGE} AS gondor-os
@@ -14,10 +14,10 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
-    bash /ctx/00-remove.sh && \
-    bash /ctx/01-base.sh && \
-    bash /ctx/02-desktop.sh && \
-    bash /ctx/03-cleanup-kde-frameworks.sh
+    bash /ctx/build/00-remove.sh && \
+    bash /ctx/build/01-base.sh && \
+    bash /ctx/build/02-desktop.sh && \
+    bash /ctx/build/03-cleanup-kde-frameworks.sh
 
 # Apply image defaults after RPM installation and package cleanup.
 COPY system_files/etc/ /etc/
@@ -27,9 +27,9 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
-    bash /ctx/04-services.sh && \
-    bash /ctx/05-noctalia-greeter.sh && \
-    bash /ctx/99-cleanup.sh && \
+    bash /ctx/build/04-services.sh && \
+    bash /ctx/build/05-noctalia-greeter.sh && \
+    bash /ctx/build/99-cleanup.sh && \
 
 ### LINTING
 ## Verify final image and contents are correct.
