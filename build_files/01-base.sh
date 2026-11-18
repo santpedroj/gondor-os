@@ -20,14 +20,14 @@ sed -i 's|^SUPPORT_URL=.*|SUPPORT_URL="https://github.com/santpedroj/gondor-os/i
 sed -i 's|^BUG_REPORT_URL=.*|BUG_REPORT_URL="https://github.com/santpedroj/gondor-os/issues"|' /usr/lib/os-release
 
 # Additional branding fixes for distro command output
-sed -i 's/^ID=.*/ID=gondor-os/' /usr/lib/os-release
+sed -i 's/^ID=.*/ID=gondor/' /usr/lib/os-release
 sed -i "s/^VERSION=.*/VERSION=\"${VERSION_ID} (Osgiliath)\"/" /usr/lib/os-release
 sed -i 's/^VERSION_CODENAME=.*/VERSION_CODENAME="Osgiliath"/' /usr/lib/os-release
-sed -i 's/^LOGO=.*/LOGO=gondor-os/' /usr/lib/os-release
+sed -i 's/^LOGO=.*/LOGO=gondor/' /usr/lib/os-release
 sed -i 's/^VARIANT=.*/VARIANT="Umbriel"/' /usr/lib/os-release
-sed -i 's/^VARIANT_ID=bazzite/VARIANT_ID=gondor-os/' /usr/lib/os-release
+sed -i 's/^VARIANT_ID=bazzite/VARIANT_ID=gondor/' /usr/lib/os-release
 sed -i 's|^CPE_NAME=.*|CPE_NAME=cpe:/o:santpedroj:gondor-os:'"${VERSION_ID}"'|' /usr/lib/os-release
-sed -i 's/^IMAGE_ID=bazzite/IMAGE_ID=gondor-os/' /usr/lib/os-release
+sed -i 's/^IMAGE_ID=bazzite/IMAGE_ID=gondor/' /usr/lib/os-release
 
 # =============================================================================
 # Gondor BRANDING (MOTD & FASTFETCH)
@@ -35,9 +35,9 @@ sed -i 's/^IMAGE_ID=bazzite/IMAGE_ID=gondor-os/' /usr/lib/os-release
 # Override Bazzite's MOTD and fastfetch with Gondor branding
 
 # Install Gondor branding files for fastfetch
-mkdir -p /usr/share/ublue-os/gondor-os
-cp /ctx/build/gondor/logo.txt /usr/share/ublue-os/gondor-os/
-cp /ctx/build/gondor/fastfetch.jsonc /usr/share/ublue-os/gondor-os/
+mkdir -p /usr/share/ublue-os/gondor
+cp /ctx/build/gondor/logo.txt /usr/share/ublue-os/gondor/
+cp /ctx/build/gondor/fastfetch.jsonc /usr/share/ublue-os/gondor/
 
 # Override Bazzite's fastfetch aliases with Gondor config
 # Using 'zzz-' prefix ensures this runs after bazzite-neofetch.sh
