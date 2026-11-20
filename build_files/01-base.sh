@@ -79,10 +79,11 @@ dnf5 install -y \
 
 # file manager
 dnf5 install -y \
-  thunar \
-  thunar-archive-plugin \
-  thunar-volman \
+  nemo \
   file-roller
+#thunar \
+#thunar-archive-plugin \
+#thunar-volman \
 
 # functionality
 dnf5 install -y \
