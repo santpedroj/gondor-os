@@ -93,7 +93,8 @@ dnf5 install -y \
   gnome-keyring \
   gnome-keyring-pam \
   udisks2 \
-  gvfs
+  gvfs \
+  glycin-thumbnailer
 
 # screenshot
 dnf5 install -y \
