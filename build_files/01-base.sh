@@ -75,7 +75,8 @@ dnf5 install -y --from-repo=terra --setopt=terra.excludepkgs=noctalia \
 # apps
 dnf5 install -y \
   brave-origin \
-  kitty
+  kitty \
+  mpv
 
 # file manager
 dnf5 install -y \
