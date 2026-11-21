@@ -80,9 +80,9 @@ dnf5 install -y \
 # file manager
 dnf5 install -y \
   nautilus \
-  nemo \
   file-roller-nautilus \
   file-roller
+#nemo
 #thunar \
 #thunar-archive-plugin \
 #thunar-volman \
