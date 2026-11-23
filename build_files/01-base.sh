@@ -69,9 +69,7 @@ cp /ctx/build/gondor/tips.md /usr/share/ublue-os/motd/tips/10-gondor.md
 
 # Terra packages
 dnf5 install -y --from-repo=terra --setopt=terra.excludepkgs=noctalia \
-  zed \
-  luciole-nightly
-#satty
+  zed
 
 # apps
 dnf5 install -y \
