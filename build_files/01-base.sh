@@ -70,7 +70,8 @@ cp /ctx/build/gondor/tips.md /usr/share/ublue-os/motd/tips/10-gondor.md
 # Terra packages
 dnf5 install -y --from-repo=terra --setopt=terra.excludepkgs=noctalia \
   zed \
-  satty
+  luciole-nightly
+#satty
 
 # apps
 dnf5 install -y \
@@ -83,10 +84,6 @@ dnf5 install -y \
   nautilus \
   file-roller-nautilus \
   file-roller
-#nemo
-#thunar \
-#thunar-archive-plugin \
-#thunar-volman \
 
 # functionality
 dnf5 install -y \
